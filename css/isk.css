@@ -1,0 +1,77 @@
+.isk div {
+    margin-bottom: 12px;
+}
+.facetwp-facet, .facet-label {
+    padding: 12px;
+    color: #F5F5F5;
+}
+
+div.facetwp-checkbox {
+    font-size: 1.168em;
+}
+
+select.facetwp-dropdown {
+    color: #000;
+}
+
+h2.site-description, h1.site-title, h1.site-title a {
+    display: inline;
+    float: left;
+}
+
+.tab-bar-home a, .tab-bar-home {
+    color: white;
+    display: inline;
+    float: right;
+    font-size: 2em;
+    margin: 8px;
+}
+
+
+h2.site-description {
+    margin-left: 8px;
+}
+
+@media screen and (max-width: 480px) {
+    h2.site-description, h1.site-title, h1.site-title a {
+        display: none;
+    }
+    .tab-bar-home a, .tab-bar-home {
+        float: left;
+    }
+
+}
+
+
+.isk-facet-button:hover, div.facetwp-pager a:hover, .facetwp-checkbox:hover{
+    background-color: blue;
+}
+
+
+div.facetwp-pager a, span.facetwp-pager-label {
+    color: #F5F5F5;
+    background-color: #000;
+    padding: 4px 8px;
+}
+
+@media screen and (max-width: 480px) {
+    .isk-facet-button { width: 100%;}
+}
+
+span.isk-author {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    background-color: #00F;
+    margin: 4px 0 0;
+    padding: 4px 6px;
+}
+
+span.isk-author:hover{
+    background-color: #000;
+}
+
+span.isk-facet-button-title {
+    margin-bottom: 16px;
+    display: block;
+}
