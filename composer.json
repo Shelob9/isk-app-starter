@@ -1,0 +1,30 @@
+{
+    "name" : "shelob9/app-starter-sk",
+    "description" : "Modifications for app_starter theme for itisknown.",
+    "type" : "wordpress-plugin",
+    "keywords" : [ "wordpress" ],
+    "license" : "GPL-2.0+",
+    "authors" : [
+        {
+            "name"      : "Josh Pollock",
+            "email"     : "josh@joshpress.net",
+            "homepage"  : "http://JoshPress.net",
+            "role"      : "Developer"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "git",
+            "url": "https://github.com/shelob9/app_starter"
+        }
+    ],
+    "require" : {
+        "composer/installers"       : "~1.0.0",
+        "php"                       : ">=5.2.4",
+        "shelob9/app_starter"       : "*",
+    },
+    "extra" : {
+        "installer-name" : "app-starter-isk"
+    }
+
+}
