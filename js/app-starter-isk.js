@@ -2,12 +2,6 @@ jQuery(document).ready(function($) {
     //init foundation
     $(document).foundation();
 
-    //mag-popup
-    $('.open-popup-link').magnificPopup({
-        type:'inline',
-        midClick: true
-    });
-
     var adminBar = '#wpadminbar';
     var tabBar = '.tab-bar';
     var adminBarHeight = $( adminBar ).height();
@@ -24,6 +18,4 @@ jQuery(document).ready(function($) {
         $( main).css( 'padding-top', tabBarHeight + 'px' );
     }
 
-});/**
- * Created by josh on 7/3/14.
- */
+});
