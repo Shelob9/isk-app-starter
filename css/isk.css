@@ -78,9 +78,11 @@ span.isk-author {
     padding: 4px 6px;
 }
 
+/*
 span.isk-author:hover{
     background-color: #000;
 }
+*/
 
 span.isk-facet-button-title {
     margin-bottom: 16px;
