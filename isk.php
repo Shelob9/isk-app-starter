@@ -18,11 +18,12 @@ class isk_app_starter {
 
 	public static $type = 'whatisknown';
 	public static $templates = null;
-	public static $facet_page = 'learn';
+	public static $facet_page = 127;
 
 	public static $debug = false;
 
 	function __construct() {
+
 		/**
 		 * App starter Setup
 		 */
