@@ -261,19 +261,45 @@ class isk_app_starter {
 	 * @return false|null|string
 	 */
 	static function author( $id ) {
-		$pods = self::pod();
+		$instance = self::init();
+		$pods = $instance->pod();
 		$pods->fetch( $id );
 
 		return $pods->display( 'source_author.post_title' );
 
 	}
 
+	/**
+	 * Holds the instance of this class.
+	 *
+	 *
+	 * @access private
+	 * @var    object
+	 */
+	private static $instance;
 
 
+	/**
+	 * Returns the instance.
+	 *
+	 * @since  0.0.1
+	 * @access public
+	 * @return object
+	 */
+	public static function init() {
 
-} 
+		if ( !self::$instance )
+			self::$instance = new self;
+
+		return self::$instance;
+
+	}
+
+
+}
 
 new isk_app_starter();
+
 
 /**
  * Output facet content
