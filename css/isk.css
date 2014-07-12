@@ -19,7 +19,7 @@ h2.site-description, h1.site-title, h1.site-title a {
     float: left;
 }
 
-.tab-bar-home a, .tab-bar-home {
+.tab-bar-home a, .tab-bar-home, span.header-social a  {
     color: white;
     display: inline;
     float: right;
@@ -27,23 +27,34 @@ h2.site-description, h1.site-title, h1.site-title a {
     margin: 8px;
 }
 
+.tab-bar-home a, .tab-bar-home {
+    display: none;
+}
+
 
 h2.site-description {
     margin-left: 8px;
 }
 
+span.header-social {
+    display: inline;
+    float: right;
+}
+
+
 @media screen and (max-width: 480px) {
-    h2.site-description, h1.site-title, h1.site-title a {
+    h2.site-description, h1.site-title, h1.site-title a, span.header-social a, span.header-social {
         display: none;
     }
     .tab-bar-home a, .tab-bar-home {
         float: left;
+        display: inline;
     }
 
 }
 
 
-.isk-facet-button:hover, div.facetwp-pager a:hover, .facetwp-checkbox:hover{
+.isk-facet-button:hover, div.facetwp-pager a:hover, .facetwp-checkbox:hover, div.isk-link.button:hover {
     background-color: blue;
 }
 
@@ -74,4 +85,9 @@ span.isk-author:hover{
 span.isk-facet-button-title {
     margin-bottom: 16px;
     display: block;
+}
+
+
+div.isk-link.button a {
+    color: #FFF;
 }

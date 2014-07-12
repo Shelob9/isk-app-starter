@@ -215,7 +215,14 @@ class isk_app_starter {
 	 * @return string
 	 */
 	function tab_bar_middle( $middle ) {
-		return $middle.'<h2 class="site-description">'. get_bloginfo( 'description' ).'</h2><a href="'.esc_url( home_url( '/' ) ).'" rel="home"><span class="tab-bar-home genericon genericon-home"></span></a>';
+		$middle = '<h2 class="site-description">'. get_bloginfo( 'description' ).'</h2>';
+		$middle .= '<span class="header-social">';
+		$middle .= $this->social();
+		$middle .='</span>';
+		$middle .= '<a href="'.esc_url( home_url( '/' ) ).'" rel="home"><span class="tab-bar-home genericon genericon-home"></span></a>';
+
+		return $middle;
+
 	}
 
 	/**
@@ -264,6 +271,22 @@ class isk_app_starter {
 		$pods->fetch( $id );
 
 		return $pods->display( 'source_author.post_title' );
+
+	}
+
+	/**
+	 * Social Links
+	 */
+	function social() {
+		$social = '
+			<a href="http://JoshPress.net" title="Website" class="genericon genericon-wordpress"></a>
+			<a href="mailto:JPollock412@gmail.com" class="genericon genericon-mail" ></a>
+			<a href="https://plus.google.com/u/0/108295629672902361491" title="Google Plus Profile" class="genericon genericon-googleplus" rel="me"></a>
+			<a href="http://github.com/shelob9" title="Github" class="genericon genericon-github"></a>
+			<a href="http://www.linkedin.com/pub/josh-pollock/5/900/978" class="genericon genericon-linkedin-alt" title="Linkedin Profile"></a>
+			<a href="http://twitter.com/Josh412" class="genericon genericon-twitter"></a>';
+
+		return $social;
 
 	}
 
