@@ -146,19 +146,15 @@ class isk_app_starter {
 	function facets() {
 		if ( $this->is_isk( true )  ) {
 			foreach ( $this->the_facets() as $facet ) {
-				echo '<div class="facet-label">'.ucfirst( $facet ).'</div>';
-				echo do_shortcode( '[facetwp facet="'.$facet.'"]' );
+				$facet = do_shortcode( '[facetwp facet="'.$facet.'"]' );
+				if ( $facet ) {
+					echo '<div class="facet-label">'.ucfirst( $facet ).'</div>';
+					echo do_shortcode( '[facetwp facet="'.$facet.'"]' );
+				}
+
 			}
+
 		}
-	}
-
-	static function mfacet( $id ) { ?>
-		<a href="#isk-<?php echo $id; ?>-modal" class="open-popup-link"><?php the_title(); echo self::author( $id ); ?></a>
-		<div id="isk-<?php echo $id; ?>-modal" class="white-popup mfp-hide">
-
-			<?php echo self::facet_content( $id ); ?>
-		</div>
-		<?php
 	}
 
 	/**
@@ -246,9 +242,17 @@ class isk_app_starter {
 	 * @return mixed
 	 */
 	public static function facet_content( $id ) {
-		if ( isset( self::$templates[ $id ] ) )
-			return self::$templates[ $id ];
-		
+		$out =  '<a href="'.get_the_permalink( $id ).'">'.get_the_title( $id ).'</a>';
+		$author = isk_app_starter::author( $id );
+		if ( $author ) {
+			$author = '<span class="isk-author">By: '.$author;
+			$author = $author.'</span>';
+			$out = $out.$author;
+		}
+
+		$out = '<div class="isk-facet-button">'.$out.'</div>';
+
+		return $out;
 	}
 
 	/**
@@ -331,33 +335,11 @@ new isk_app_starter();
  */
 function isk_facet_content( $id ) {
 	$template = isk_app_starter::facet_content( $id );
-	if ( 1==1 || ! empty( $template ) ) {
-		return $template;
-	}
+	return $template;
 
 }
 
-function isk_mfacet( $id ) {
-	return isk_app_starter::mfacet( $id );
-}
 
-/**
- * Output Source Author
- *
- * @param $id
- *
- * @return false|null|string
- */
-function isk_facet_author( $id ) {
-	$author = isk_app_starter::author( $id );
-	if ( $author ) {
-		$author = '<span class="isk-author">By: '.$author;
-		$author = $author.'</span>';
-	}
-
-	return $author;
-
-}
 /**
  * Better debug functions
  */
