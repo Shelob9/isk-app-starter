@@ -37,16 +37,8 @@ class isk_app_starter {
 			return $view;
 		} );
 
-		//Preload Pods Template based views
-		add_action( 'init', array( $this, 'templates' ) );
+		add_filter( 'the_content', array( $this, 'front_content') );
 
-		//output facets
-		if ( 1==1 || class_exists( 'FacetWP' ) ) {
-			add_action( 'app_starter_after_off_canvas_left', array( $this, 'facets' ) );
-		}
-		else {
-			add_filter( 'the_content', array( $this, 'front_content') );
-		}
 
 		//add custom post type to search
 		add_action( 'pre_get_posts', array( $this, 'search_query' ) );
@@ -78,20 +70,16 @@ class isk_app_starter {
 	/**
 	 * The front page content. Fallback for when FacetWP isn't there.
 	 *
-	 * @todo loose this?
+	 *
 	 *
 	 * @param $content
 	 *
 	 * @return mixed
 	 */
 	function front_content( $content ) {
-		if ( is_front_page() || is_home() ) {
+		if ( $this->is_isk() ) {
+			$content = $this->facets().$content;
 
-			global $post;
-			$id = $post->ID;
-			if ( isset( $things[ $id ]) ) {
-				$content =  self::$templates[ $id ];
-			}
 		}
 
 		return $content;
@@ -145,12 +133,13 @@ class isk_app_starter {
 	 */
 	function facets() {
 		if ( $this->is_isk( true )  ) {
-			foreach ( $this->the_facets() as $facet ) {
-				$facet = do_shortcode( '[facetwp facet="'.$facet.'"]' );
-				if ( $facet ) {
-					echo '<div class="facet-label">'.ucfirst( $facet ).'</div>';
+			foreach ( $this->the_facets() as $facet => $label ) {
+
+					echo '<div class="isk-facet-select" id="facet-'.$facet.'">';
+					echo '<div class="facet-label">'.$label.'</div>';
 					echo do_shortcode( '[facetwp facet="'.$facet.'"]' );
-				}
+					echo '</div><!--id="facet-'.$facet.'-->';
+
 
 			}
 
@@ -180,7 +169,11 @@ class isk_app_starter {
 	 * @return array
 	 */
 	function the_facets() {
-		return array( 'topics', 'author' );
+		return array(
+			'topics' => 'Topics',
+			'author' => 'Authors',
+			'search' => 'Keyword Search',
+		);
 	}
 
 	/**
@@ -242,15 +235,16 @@ class isk_app_starter {
 	 * @return mixed
 	 */
 	public static function facet_content( $id ) {
-		$out =  '<a href="'.get_the_permalink( $id ).'">'.get_the_title( $id ).'</a>';
-		$author = isk_app_starter::author( $id );
+		$out =  '<a href="'.get_the_permalink( $id ).'" class="button isk-facet-button">'.get_the_title( $id ).'</a>';
+		//$author = isk_app_starter::author( $id );
+		$author = false;
 		if ( $author ) {
 			$author = '<span class="isk-author">By: '.$author;
 			$author = $author.'</span>';
 			$out = $out.$author;
 		}
 
-		$out = '<div class="isk-facet-button">'.$out.'</div>';
+		$out = '<div class="isk-facet-result">'.$out.'</div>';
 
 		return $out;
 	}
