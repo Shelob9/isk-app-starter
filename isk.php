@@ -40,7 +40,6 @@ class isk_app_starter {
 
 		add_filter( 'the_content', array( $this, 'front_content') );
 
-
 		//add custom post type to search
 		add_action( 'pre_get_posts', array( $this, 'search_query' ) );
 
@@ -49,6 +48,9 @@ class isk_app_starter {
 
 		//debug in footer if in internal debug mode
 		add_action( 'wp_footer', array( $this, 'debug' ) );
+
+		//update the source_author field
+		add_action( 'save_post', array( $this, 'save_post' ) );
 
 
 	}
@@ -307,6 +309,20 @@ class isk_app_starter {
 	}
 
 	/**
+	 * On post save of things that are known, put source authors name in a separate meta field
+	 *
+	 * Needed so FacetWP can have a Facet based on source author
+	 */
+	function save_post() {
+		if ( self::$type === pods_v( 'post_type', 'post', false, true ) ) {
+			$id = pods_v( 'post_ID', 'post' );
+			$author_id = pods_v( 'pods_meta_source_author', 'post' );
+			$author_name = get_the_title( $author_id );
+			update_post_meta( $id, 'source_author_name', $author_name );
+		}
+	}
+
+	/**
 	 * Holds the instance of this class.
 	 *
 	 *
@@ -350,6 +366,7 @@ function isk_facet_content( $id ) {
 	return $template;
 
 }
+
 
 
 /**
