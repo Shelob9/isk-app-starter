@@ -1,6 +1,11 @@
+<?php $front = false; if ( is_home() || is_front_page() || is_page( 'itisknown') ) $front = true; ?>
+
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<header class="entry-header">
-		<h1 class="entry-title"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+		<h1 class="entry-title <?php if ( $front ) echo 'isk-front-title'; ?>"><a href="<?php the_permalink(); ?>" rel="bookmark"><?php the_title(); ?></a></h1>
+		<?php if ( $front ) : ?>
+			<button class="button facet-reset-button" onclick="FWP.reset()">Reset</button>
+		<?php endif; ?>
 	</header><!-- .entry-header -->
 
 	<div class="entry-content">

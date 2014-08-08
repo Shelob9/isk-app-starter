@@ -98,4 +98,24 @@ div.isk-link.button a {
 
 .isk-facet-select {
     background: #000;
+    margin: 12px;
+}
+
+#post-160 h1.entry-title {
+    margin-left: 12px;
+}
+
+aside#offcanvas-left-widget-area,  aside#offcanvas-left-widget-area h4, aside#offcanvas-left-widget-area h3 {
+    color: #FFF;
+}
+
+button.button.facet-reset-button {
+    display: inline;
+    float: right;
+    margin: 0 12px;
+    box-shadow: 0;
+    border-radius: 0px;
+}
+h1.entry-title.isk-front-title {
+    display: inline;
 }
