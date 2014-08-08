@@ -30,7 +30,8 @@ class isk_app_starter {
 		add_filter( 'app_starter_use_off_canvas_right', '__return_false');
 		add_filter( 'app_starter_no_sidebar', '__return_true' );
 		add_filter( 'app_starter_use_main_js', '__return_false' );
-		add_filter( 'app_starter_tab_bar_middle', array( $this, 'tab_bar_middle') );
+		add_filter( 'app_starter_tab_bar_middle', array( $this, 'tab_bar_middle' ) );
+		//add_action( 'init', array( $this, 'remove_widgets' )  );
 		add_filter( 'app_starter_content_part_view', function( $view ) {
 			$view = trailingslashit( ISK_ASP_DIR ).'isk-view.php';
 
@@ -288,6 +289,10 @@ class isk_app_starter {
 
 	}
 
+	function remove_widgets() {
+		remove_action( 'app_starter_after_off_canvas_left', 'app_starter_off_canvas_widgets_left' );
+	}
+
 	/**
 	 * Holds the instance of this class.
 	 *
@@ -373,6 +378,5 @@ function isk_facet_content( $id ) {
 			}
 		}
 	endif;
-
 
 
