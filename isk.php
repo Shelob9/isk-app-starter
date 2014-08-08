@@ -18,7 +18,7 @@ class isk_app_starter {
 
 	public static $type = 'whatisknown';
 	public static $templates = null;
-	public static $facet_page = 127;
+	public static $facet_page = 160;
 
 	public static $debug = false;
 
@@ -78,8 +78,9 @@ class isk_app_starter {
 	 * @return mixed
 	 */
 	function front_content( $content ) {
-		if ( $this->is_isk() ) {
-			$content = $this->facets().$content;
+		global $post;
+		if ( $this->is_isk( true ) && $post->ID == self::$facet_page ) {
+			$content = $this->facets( true ).$content;
 
 		}
 
@@ -131,19 +132,31 @@ class isk_app_starter {
 
 	/**
 	 * Output the Facets
+	 *
+	 * @param bool $return Optional. Whether to return or echo. Default is false, which echos.
 	 */
-	function facets() {
+	function facets( $return = false ) {
 		if ( $this->is_isk( true )  ) {
+			$out = '';
 			foreach ( $this->the_facets() as $facet => $label ) {
 
-					echo '<div class="isk-facet-select" id="facet-'.$facet.'">';
-					echo '<div class="facet-label">'.$label.'</div>';
-					echo do_shortcode( '[facetwp facet="'.$facet.'"]' );
-					echo '</div><!--id="facet-'.$facet.'-->';
+				$out .= '<div class="isk-facet-select" id="facet-'.$facet.'">';
+				$out .= '<div class="facet-label">'.$label.'</div>';
+				$out .= do_shortcode( '[facetwp facet="'.$facet.'"]' );
+				$out .= '</div><!--id="facet-'.$facet.'-->';
 
 
 			}
 
+		}
+
+		if ( $out ) {
+			if ( $return ) {
+				return $out;
+			}
+			else {
+				echo $out;
+			}
 		}
 	}
 
