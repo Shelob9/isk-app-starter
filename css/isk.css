@@ -14,6 +14,12 @@ select.facetwp-dropdown {
     color: #000;
 }
 
+select.facetwp-dropdown:hover {
+    background-color: blue;
+    color: white;
+    border-color: #ffffff;
+}
+
 h2.site-description, h1.site-title, h1.site-title a {
     display: inline;
     float: left;
@@ -27,13 +33,22 @@ h2.site-description, h1.site-title, h1.site-title a {
     margin: 8px;
 }
 
+.tab-bar-home a:hover, span.header-social a:hover {
+    color:blue;
+}
+
 .tab-bar-home a, .tab-bar-home {
     display: none;
 }
 
 
-h2.site-description {
+h2.site-description a, h2.site-description {
     margin-left: 8px;
+    color: #FFF;
+}
+
+h2.site-description a:hover {
+    color: #0000ff;
 }
 
 span.header-social {
@@ -70,7 +85,7 @@ div.facetwp-pager a, span.facetwp-pager-label {
     margin: 12px;
 }
 @media screen and (max-width: 480px) {
-    .isk-facet-button, .isk-facet-result { width: 100%;}
+    .isk-facet-button, .isk-facet-result { width: 94%;}
 }
 
 span.isk-author {
@@ -101,8 +116,9 @@ div.isk-link.button a {
     margin: 12px;
 }
 
-#post-160 h1.entry-title {
+#post-160 h1.entry-title a {
     margin-left: 12px;
+    color: white;
 }
 
 aside#offcanvas-left-widget-area,  aside#offcanvas-left-widget-area h4, aside#offcanvas-left-widget-area h3 {
@@ -112,10 +128,34 @@ aside#offcanvas-left-widget-area,  aside#offcanvas-left-widget-area h4, aside#of
 button.button.facet-reset-button {
     display: inline;
     float: right;
-    margin: 0 12px;
     box-shadow: 0;
     border-radius: 0px;
+    margin: 5px 4px 4px;
+    height: 100%;
+    background: white;
+    color: black;
+
+}
+button.button.facet-reset-button:hover {
+    background:blue;
+    color:white;
+}
+
+@media screen and (max-width: 480px) {
+    button.button.facet-reset-button {
+        display: none;
+
+    }
+
 }
 h1.entry-title.isk-front-title {
     display: inline;
+}
+
+#post-160 header.entry-header {
+    background: #000;
+    color: #FFF;
+    margin: 0 12px;
+    border: 1px solid #00F;
+    border-top-width: 0px;
 }

@@ -220,7 +220,7 @@ class isk_app_starter {
 	 * @return string
 	 */
 	function tab_bar_middle( $middle ) {
-		$middle = '<h2 class="site-description">'. get_bloginfo( 'description' ).'</h2>';
+		$middle = '<h2 class="site-description"><a href="'.esc_url( home_url( '/' ) ).'" rel="home">'. get_bloginfo( 'description' ).'</a></h2>';
 		$middle .= '<span class="header-social">';
 		$middle .= $this->social();
 		$middle .='</span>';
